@@ -42,7 +42,7 @@ export const Register = () => {
 
   return (
     <div className="flex w-full justify-center items-center py-4">
-      <div className="grid  border-solid border-2 rounded-md p-8 shadow-lg bg-white">
+      <div className="grid  border-solid border-2 rounded-md p-8 shadow-lg bg-white-500">
         <div className="flex justify-center ">
           <Title level={3}>Crear Cuenta</Title>
         </div>
@@ -199,7 +199,7 @@ export const Register = () => {
             </section>
           </div>
 
-          <section className="grid text-white">
+          <section className="grid text-white-500">
             <Form.Item
               className="mb-4"
               valuePropName="privacyTermsChecked"

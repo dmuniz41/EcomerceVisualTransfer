@@ -13,7 +13,7 @@ export const VerifyCode = () => {
   const [verificationEmail, setVerificationEmail] = useState("daniel@gmail.com");
   return (
     <div className="flex w-full mt-24 justify-center items-center py-4">
-      <div className="grid  border-solid border-2 rounded-md px-8 py-10 shadow-lg text-center bg-white">
+      <div className="grid  border-solid border-2 rounded-md px-8 py-10 shadow-lg text-center bg-white-500">
         <Title level={3}>Entrar codigo de verificación</Title>
         <Title level={5}>
           Se ha enviado un código de verificación al correo <span className="font-bold">{verificationEmail}</span> por favor introduzca el código{" "}

@@ -1,14 +1,15 @@
 import { Form, Input } from "antd";
 import Modal from "antd/es/modal/Modal";
 
-export const AddCategoryModal = ({ open, onCancel, onCreate }) => {
+export const UpdateCategoryModal = ({ open, onCancel, onCreate, initialValues }) => {
+  console.log("🚀 ~ UpdateCategoryModal ~ initialValues:", initialValues)
   const [form] = Form.useForm();
   return (
     <Modal
       className="flex flex-col"
       title={
         <div className="flex w-full justify-center">
-          <span className="font-semibold text-md">Añadir Categoría</span>
+          <span className="font-semibold text-md">Editar Categoría</span>
         </div>
       }
       cancelText="Cancelar"
@@ -44,7 +45,14 @@ export const AddCategoryModal = ({ open, onCancel, onCreate }) => {
         </div>,
       ]}
     >
-      <Form form={form} layout="horizontal" name="addCategory" size="large" clearOnDestroy>
+      <Form
+        form={form}
+        layout="horizontal"
+        name="updateCategory"
+        size="large"
+        initialValues={initialValues}
+        clearOnDestroy
+      >
         <Form.Item
           name="description"
           label={<span className="font-semibold justify-start">Descripción</span>}

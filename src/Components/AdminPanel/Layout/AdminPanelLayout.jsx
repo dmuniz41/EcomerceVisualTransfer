@@ -46,10 +46,10 @@ const navLinks = [
 export const AdminPanelLayout = () => {
   return (
     <Layout className="h-screen">
-      <Toaster richColors />
+      <Toaster richColors position="top-center"/>
       <Sider theme="dark" breakpoint="lg" collapsedWidth="0">
-        <div className="flex w-full justify-center h-[64px] items-center">
-          <Image width={40} height={40} src={TransferLogo} preview={false} />
+        <div className="flex w-full justify-center h-[80px] items-center">
+          <Image width={50} height={50} src={TransferLogo} preview={false} />
         </div>
         <Menu theme="dark" mode="inline">
           {navLinks.map((link) => {

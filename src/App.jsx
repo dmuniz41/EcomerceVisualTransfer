@@ -1,14 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 
 import { AdminPanelLayout } from "./Components/AdminPanel/Layout/AdminPanelLayout";
+import { CategoriesTable } from "./Components/AdminPanel/Categories/CategoriesTable";
+import { ClientsTable } from "./Components/AdminPanel/Clients/ClientsTable";
 import { ListOfServices } from "./Components/Shop/ListOfServices/ListOfServices";
 import { Login } from "./Components/Auth/Login";
 import { NotFound } from "./Components/NotFound/NotFound";
 import { ProductDetails } from "./Components/Shop/Product/ProductDetails";
+import { ProductsTable } from "./Components/AdminPanel/Products/ProductsTable";
 import { Register } from "./Components/Auth/Register";
 import { ShopLayout } from "./Components/Shop/Layout/ShopLayout";
 import { VerifyCode } from "./Components/Auth/VerifyCode";
-import { CategoriesTable } from "./Components/AdminPanel/Categories/CategoriesTable";
 
 const App = () => {
   return (
@@ -22,9 +24,9 @@ const App = () => {
       </Route>
       <Route path="/admin" element={<AdminPanelLayout />}>
         <Route path="dashboard" element={<h1>dashboard</h1>} />
-        <Route path="products" element={<h1>products</h1>} />
-        <Route path="categories" element={<CategoriesTable/>} />
-        <Route path="clients" element={<h1>clients</h1>} />
+        <Route path="products" element={<ProductsTable />} />
+        <Route path="categories" element={<CategoriesTable />} />
+        <Route path="clients" element={<ClientsTable />} />
         <Route path="sales" element={<h1>sales</h1>} />
       </Route>
       <Route path="*" element={<NotFound />} />

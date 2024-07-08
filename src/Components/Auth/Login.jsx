@@ -32,7 +32,7 @@ export const Login = () => {
   const navigate = useNavigate();
   return (
     <div className="flex w-full justify-center items-center h-full">
-      <div className="grid h-[450px] border-solid border-2 rounded-md p-8 justify-center bg-white shadow-lg">
+      <div className="grid h-[450px] border-solid border-2 rounded-md p-8 justify-center bg-white-500 shadow-lg">
         <div className="flex justify-center pb-5">
           <Title level={3}>Iniciar Sesión</Title>
         </div>
@@ -74,10 +74,10 @@ export const Login = () => {
               ¿Olvidaste tu contraseña?
             </a>
           </Form.Item>
-          <div className="grid gap-2 text-white">
+          <div className="grid gap-2 text-white-500">
             <Form.Item className="mb-0">
               <Button block type="primary" size="large" htmlType="submit" className=" flex py-2 rounded-md font-medium">
-                <LoginIcon color="#ffffff" className="text-white" />
+                <LoginIcon color="#ffffff" className="text-white-500" />
                 Entrar
               </Button>
             </Form.Item>
@@ -88,7 +88,7 @@ export const Login = () => {
               size="large"
               className="flex py-2 rounded-md font-medium text-[#0958d9]"
             >
-              <NewUserIcon color="#0958d9" className="text-white" />
+              <NewUserIcon color="#0958d9" className="text-white-500" />
               Crear Cuenta
             </Button>
             <span className="font-light text-[#000000]">

@@ -6,8 +6,7 @@ import { DeleteIcon } from "../../Icons/DeleteIcon";
 import { EditIcon } from "../../Icons/EditIcon";
 import { AddCategoryModal } from "./AddCategoryModal";
 import { toast } from "sonner";
-
-
+import { UpdateCategoryModal } from "./UpdateCategoryModal";
 
 const data = [
   {
@@ -43,21 +42,69 @@ const onChange = (pagination, filters, sorter, extra) => {
 export const CategoriesTable = () => {
   // ESTADOS PARA CONTROLAR LA VISIBILIDAD DE LOS MODALES
   const [addCategoryModal, setAddCategoryModal] = useState(false);
+  const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
+  const [categoryToUpdate, setCategoryToUpdate] = useState({});
 
-  const onAddCategory = (values) => {
-    console.log(values)
+  // REALIZA LA LLAMADA AL ENDPOINT DE CREACIÓN DE LA CATEGORÍA
+  const onCreateCategory = (values) => {
+    console.log(values);
     setAddCategoryModal(false);
+    return new Promise((resolve, reject) => {
+      setTimeout(reject, 3000);
+    });
   };
 
-  const handleDelete = (record) => {
-    console.log("🚀 ~ handleDelete ~ record:", record)
-    toast.error((t) => (
-      <div>
-        This is a custom component <button onClick={() => toast.dismiss(t)}>close</button>
-      </div>
-    ));
-  }
+  // REALIZA LA LLAMADA AL ENDPOINT DE ACTUALIZACIÓN DE LA CATEGORÍA
+  const onUpdateCategory = (values) => {
+    console.log(values);
+    setUpdateCategoryModal(false);
+    return new Promise((resolve, reject) => {
+      setTimeout(reject, 3000);
+    });
+  };
 
+  // REALIZA LA LLAMADA AL ENDPOINT DE ELIMINACIÓN DE LA CATEGORÍA
+  const onDeleteCategory = (record) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 3000);
+    });
+  };
+
+  // GESTIONA LA RESPOESTA DE LA LLAMADA AL ENDPOINT DE ELIMINACIÓN DE LA CATEGORÍA
+  const handleDelete = (record) => {
+    toast.warning("Desea eliminar esta categoría?", {
+      action: {
+        label: "Eliminar",
+        onClick: () => {
+          toast.promise(onDeleteCategory(record), {
+            error: "Error al eliminar la categoría",
+            success: "Categoría eliminada correctamente",
+            loading: "Eliminando categoría",
+          });
+        },
+      },
+    });
+  };
+
+  // GESTIONA LA RESPUESTA DE LA LLAMADA AL ENDPOINT DE CREACIÓN DE LA CATEGORÍA
+  const handleCreate = (values) => {
+    toast.promise(onCreateCategory(values), {
+      error: "Error al crear la categoría",
+      success: "Nueva categoría creada correctamente",
+      loading: "Creando nueva categoría",
+    });
+  };
+
+  // GESTIONA LA RESPUESTA DE LA LLAMADA AL ENDPOINT DE ACTUALIZACIÓN DE LA CATEGORÍA
+  const handleUpdate = (record) => {
+    toast.promise(onUpdateCategory(record), {
+      error: "Error al actualizar la categoría",
+      success: "Categoría actualizada correctamente",
+      loading: "Actualizando categoría",
+    });
+  };
+
+  // CARGA TODAS LAS CATEGORIAS CADA VEZ QUE SE RENDERIZA EL COMPONENTE
   useEffect(() => {
     console.log("GET ALL CATEGORIES");
   }, []);
@@ -80,13 +127,19 @@ export const CategoriesTable = () => {
       render: (_, record) => (
         <div className="flex gap-1">
           <Tooltip placement="top" title={"Ver"} arrow={{ pointAtCenter: true }}>
-            <button onClick={() => console.log(record)} className="table-edit-action-btn">
+            <button
+              onClick={() => {
+                setCategoryToUpdate(record);
+                setUpdateCategoryModal(true);
+              }}
+              className="table-edit-action-btn"
+            >
               <EditIcon width={20} height={20} color="white" />
             </button>
           </Tooltip>
-  
+
           <Tooltip placement="top" title={"Eliminar"} arrow={{ pointAtCenter: true }}>
-            <button className="table-delete-action-btn" onClick={()=>handleDelete(record)}>
+            <button className="table-delete-action-btn" onClick={() => handleDelete(record)}>
               <DeleteIcon width={20} height={20} color="white" />
             </button>
           </Tooltip>
@@ -99,7 +152,7 @@ export const CategoriesTable = () => {
     <>
       <div className="flex h-16 w-full bg-white-100 rounded-md shadow-md mb-4 items-center pl-4 gap-4">
         <div className="flex gap-2">
-          <button className="toolbar-primary-icon-btn" onClick={()=> setAddCategoryModal(true)}>
+          <button className="toolbar-primary-icon-btn" onClick={() => setAddCategoryModal(true)}>
             <PlusIcon color="white" />
             Nuevo
           </button>
@@ -108,7 +161,13 @@ export const CategoriesTable = () => {
       <AddCategoryModal
         open={addCategoryModal}
         onCancel={() => setAddCategoryModal(false)}
-        onCreate={onAddCategory}
+        onCreate={handleCreate}
+      />
+      <UpdateCategoryModal
+        open={updateCategoryModal}
+        onCancel={() => setUpdateCategoryModal(false)}
+        onCreate={handleUpdate}
+        initialValues={categoryToUpdate}
       />
       <Table
         columns={columns}

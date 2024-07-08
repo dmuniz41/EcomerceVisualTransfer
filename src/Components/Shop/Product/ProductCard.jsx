@@ -14,7 +14,13 @@ export const ProductCard = ({ product }) => {
     <article className="flex justify-between gap-2 flex-col shadow-md bg-white p-4 hover:shadow-xl">
       <div className="flex flex-col gap-2 hover:cursor-pointer" onClick={handleDetails}>
         <div className="w-full justify-center flex min-h-[140px]">
-          <Image preview={false} src={`data:image/png;base64, ${product.Image}`} alt="serviceIMG" width={205} height={205}/>
+          <Image
+            preview={false}
+            src={`data:image/png;base64, ${product.Image}`}
+            alt="serviceIMG"
+            width={205}
+            height={205}
+          />
         </div>
         <div className="flex flex-col gap-2 ">
           <div className="grow">
@@ -39,7 +45,7 @@ export const ProductCard = ({ product }) => {
         </div>
       </div>
       <button
-        className="font-semibold uppercase justify-center transition ease-in delay-50 bg-[#34b042] hover:bg-[#2a8d35] rounded-md text-white py-1.5 px-8"
+        className="font-semibold uppercase justify-center transition ease-in delay-50 bg-[#34b042] hover:bg-[#2a8d35] rounded-md text-white-500 py-1.5 px-8"
         type="primary"
         onClick={() => {
           console.log("Click btn");
